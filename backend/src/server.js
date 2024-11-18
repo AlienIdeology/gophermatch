@@ -37,10 +37,6 @@ server.use(cors({
 
 server.use(express.static(path.join(__dirname, '../../frontend/src/dist/')));
 
-server.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/src/dist/', 'index.html'));
-  });
-
 import router from "./routes/router.js";
 server.use('/api', router);
 
@@ -62,3 +58,7 @@ let handleShutdown = () => {
 
 process.on('SIGINT', handleShutdown);
 process.on('SIGTERM', handleShutdown);
+
+server.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/src/dist/', 'index.html'));
+  });
